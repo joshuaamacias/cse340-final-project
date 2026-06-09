@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+
+<h2>Latest Temple Updates</h2>
+<p>Welcome! Stay up to date with construction, dedications, and news regarding temples worldwide.</p>
+
+<section class="news-feed">
+    <% news.forEach(item => { %>
+        <article class="news-card">
+            <h3><%= item.title %></h3>
+            <small><%= item.date %></small>
+            <p><%= item.snippet %></p>
+        </article>
+    <% }) %>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,18 +1,32 @@
-// Import express using ESM syntax
 import express from 'express';
+import path from 'path';
 
-// Create an instance of an Express application
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Define a route handler for the root URL ('/')
+// 1. Serve static assets from the public folder
+app.use(express.static('public'));
+
+// 2. Set up EJS Templating Engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(process.cwd(), 'src/views'));
+
+// 3. Routes (We will move this to a controller later, but let's test here)
 app.get('/', (req, res) => {
-    res.send('Hello, World!');
+    const sampleNews = [
+        { title: "Salt Lake Temple Renovation Update", date: "June 2026", snippet: "New structural columns have been successfully placed." },
+        { title: "New Temple Announced", date: "May 2026", snippet: "A new temple site has been selected for the area." }
+    ];
+    
+    // Renders src/views/home.ejs and passes data to it
+    res.render('home', { title: 'LDS Temple News', news: sampleNews });
 });
 
-// Define the port number the server will listen on
-const PORT = 3000;
+// 4. 404 Error Handler (MUST be the last route)
+app.use((req, res) => {
+    res.status(404).render('404', { title: '404 - Page Not Found' });
+});
 
-// Start the server and listen on the specified port
 app.listen(PORT, () => {
-    console.log(`Server is running on http://127.0.0.1:${PORT}`);
+    console.log(`Server running on http://127.0.0.1:${PORT}`);
 });
