@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'path';
+import templeController from './src/controllers/templeController.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,16 +12,8 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(process.cwd(), 'src/views'));
 
-// 3. Routes (We will move this to a controller later, but let's test here)
-app.get('/', (req, res) => {
-    const sampleNews = [
-        { title: "Salt Lake Temple Renovation Update", date: "June 2026", snippet: "New structural columns have been successfully placed." },
-        { title: "New Temple Announced", date: "May 2026", snippet: "A new temple site has been selected for the area." }
-    ];
-    
-    // Renders src/views/home.ejs and passes data to it
-    res.render('home', { title: 'LDS Temple News', news: sampleNews });
-});
+// 3. Main Route handled via MVC Controller
+app.get('/', templeController.getHome);
 
 // 4. 404 Error Handler (MUST be the last route)
 app.use((req, res) => {
