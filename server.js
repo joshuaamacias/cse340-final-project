@@ -24,7 +24,13 @@ app.get('/', (req, res) => {
 
 // 4. 404 Error Handler (MUST be the last route)
 app.use((req, res) => {
-    res.status(404).render('404', { title: '404 - Page Not Found' });
+    res.status(404).render('errors/404', { title: '404 - Page Not Found' });
+});
+
+// 5. 500 Error Handler
+app.use((error, req, res, next) => {
+    console.error(error.stack);
+    res.status(500).render('errors/500', { title: '500 - Server Error', error });
 });
 
 app.listen(PORT, () => {
