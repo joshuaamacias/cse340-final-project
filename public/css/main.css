@@ -153,3 +153,46 @@ footer {
 footer p {
     letter-spacing: 0.5px;
 }
+
+/* =========================================
+   Directory Filter & Sort Controls
+   ========================================= */
+.controls-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows them to stack on smaller screens */
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.controls-container input[type="text"],
+.controls-container select {
+    padding: 12px 16px;
+    font-size: 1rem;
+    border: 1px solid #ccd1d9;
+    border-radius: 8px; /* Matches the rounded look of your cards */
+    font-family: inherit;
+    background-color: #ffffff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Make the search bar grow to fill extra space */
+.controls-container input[type="text"] {
+    flex: 1; 
+    min-width: 250px;
+}
+
+/* Dropdown specific styling */
+.controls-container select {
+    cursor: pointer;
+    min-width: 180px;
+}
+
+/* Highlight the borders when the user clicks on them */
+.controls-container input[type="text"]:focus,
+.controls-container select:focus {
+    border-color: #1a3668; /* Uses the dark blue from your header */
+    box-shadow: 0 0 0 3px rgba(26, 54, 104, 0.2);
+}

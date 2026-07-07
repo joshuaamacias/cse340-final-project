@@ -1,0 +1,37 @@
+<%- include('partials/header') %>
+
+<h2>Global Temple Directory</h2>
+<p>Browse, search, and filter all announced, under construction, and dedicated temples.</p>
+
+<div class="controls-container">
+    <input type="text" id="searchInput" placeholder="Search by name or location...">
+    
+    <select id="statusFilter">
+        <option value="All">All Statuses</option>
+        <option value="Dedicated">Dedicated</option>
+        <option value="Under Construction">Under Construction</option>
+        <option value="Announced">Announced</option>
+        <option value="Renovation">Renovation</option>
+    </select>
+
+    <select id="sortSelect">
+        <option value="name-asc">Alphabetical (A-Z)</option>
+        <option value="name-desc">Alphabetical (Z-A)</option>
+        <option value="age-old">Age (Oldest First)</option>
+        <option value="age-new">Age (Newest First)</option>
+    </select>
+</div>
+
+<section class="news-feed" id="templeGrid">
+    <% news.forEach(item => { %>
+        <article class="news-card" data-name="<%= item.title.toLowerCase() %>" data-status="<%= item.rawStatus %>" data-id="<%= item.id %>">
+            <h3><%= item.title %></h3>
+            <p><strong><%= item.date %></strong></p>
+            <p><%= item.snippet %></p>
+        </article>
+    <% }) %>
+</section>
+
+<script src="/js/directory.js"></script>
+
+<%- include('partials/footer') %>

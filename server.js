@@ -14,6 +14,7 @@ app.set('views', path.join(process.cwd(), 'src/views'));
 
 // 3. Main Route handled via MVC Controller
 app.get('/', templeController.getHome);
+app.get('/directory', templeController.getDirectory);
 
 // 4. 404 Error Handler (MUST be the last route)
 app.use((req, res) => {
