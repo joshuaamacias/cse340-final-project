@@ -1,0 +1,62 @@
+<%- include('../../partials/header') %>
+<main>    
+    <h1><%= title %></h1>    
+    <p>
+        Register for a new account by providing your information below. All fields are required and passwords must meet security requirements.    
+    </p>    
+    
+    <% if (error && error.length > 0) { %>
+        <div class="alert error-message" style="color: red; background-color: #fee; padding: 10px; margin-bottom: 15px; border: 1px solid red; border-radius: 5px;">
+            <ul style="margin: 0; padding-left: 20px;">
+                <% error.forEach(msg => { %>
+                    <li><strong>Error:</strong> <%= msg %></li>
+                <% }) %>
+            </ul>
+        </div>
+    <% } %>
+
+    <% if (warning && warning.length > 0) { %>
+        <div class="alert warning-message" style="color: #856404; background-color: #fff3cd; padding: 10px; margin-bottom: 15px; border: 1px solid #ffeeba; border-radius: 5px;">
+            <%= warning %>
+        </div>
+    <% } %>
+
+    <% if (success && success.length > 0) { %>
+        <div class="alert success-message" style="color: #155724; background-color: #d4edda; padding: 10px; margin-bottom: 15px; border: 1px solid #c3e6cb; border-radius: 5px;">
+            <%= success %>
+        </div>
+    <% } %>
+
+    <form method="POST" action="/register" class="registration-form">        
+        <div class="form-group">            
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" minlength="2" required placeholder="Enter your full name">
+        </div>        
+        
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" required placeholder="your.name@example.com">
+        </div>
+
+        <div class="form-group">
+            <label for="emailConfirm">Confirm Email Address</label>
+            <input type="email" id="emailConfirm" name="emailConfirm" required placeholder="Re-enter your email address">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" minlength="8" required placeholder="Create a strong password">
+            <div class="help-text" style="font-size: 0.85em; color: #555; margin-top: 5px;">
+                Must be at least 8 characters with a number, an uppercase letter, a lowercase letter, and a special character.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="passwordConfirm">Confirm Password</label>
+            <input type="password" id="passwordConfirm" name="passwordConfirm" minlength="8" required placeholder="Re-enter your password">
+        </div>
+
+        <button type="submit">Create Account</button>
+    </form>
+</main>
+<%- include('../../partials/footer') %>

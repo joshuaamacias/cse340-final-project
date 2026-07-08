@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === "development") {
     });
 }
 
-// Export query method wrapper for models to consume
+// 1. Export it as a named export (Fixes templeModel.js)
 export const query = async (text, params) => {
     try {
         const res = await pool.query(text, params);
@@ -33,3 +33,6 @@ export const query = async (text, params) => {
         throw error;
     }
 };
+
+// 2. ALSO export it as a default export (Fixes contact.js and registration.js)
+export default { query };
