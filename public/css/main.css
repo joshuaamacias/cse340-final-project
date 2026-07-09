@@ -196,3 +196,19 @@ footer p {
     border-color: #1a3668; /* Uses the dark blue from your header */
     box-shadow: 0 0 0 3px rgba(26, 54, 104, 0.2);
 }
+
+/* Keeps the text looking normal and makes the whole card clickable */
+.temple-card-inner-link {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Spreads the link out to fill the entire container */
+    width: 100%;
+    height: 100%;
+}
+
+/* Optional hover feedback: subtly raises or highlights the card when hovered */
+.news-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}

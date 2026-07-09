@@ -25,9 +25,11 @@
 <section class="news-feed" id="templeGrid">
     <% news.forEach(item => { %>
         <article class="news-card" data-name="<%= item.title.toLowerCase() %>" data-status="<%= item.rawStatus %>" data-id="<%= item.id %>">
-            <h3><%= item.title %></h3>
-            <p><strong><%= item.date %></strong></p>
-            <p><%= item.snippet %></p>
+            <a href="/temples/<%= item.id %>" class="temple-card-inner-link">
+                <h3><%= item.title %></h3>
+                <p><strong><%= item.date %></strong></p>
+                <p><%= item.snippet %></p>
+            </a>
         </article>
     <% }) %>
 </section>

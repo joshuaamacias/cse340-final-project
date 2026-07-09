@@ -51,4 +51,31 @@ templeController.getDirectory = async (req, res, next) => {
     }
 };
 
+// 3. Single Temple Detail Controller
+templeController.showTempleDetail = async (req, res, next) => {
+    const templeId = req.params.id;
+    
+    try {
+        const temple = await templeModel.getTempleById(templeId);
+        
+        if (!temple) {
+            return res.status(404).render('errors/404', { title: 'Not Found' });
+        }
+        
+        // Formats the template variables correctly using your raw database keys
+        res.render('detail', { 
+            title: temple.name, 
+            item: {
+                title: temple.name,
+                rawStatus: temple.status,
+                date: temple.status.toUpperCase(),
+                snippet: `Status: ${temple.status} | Location: ${temple.location}${temple.closure_reason ? ` (${temple.closure_reason})` : ''}`
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching temple detail:', error);
+        next(error); 
+    }
+};
+
 export default templeController;

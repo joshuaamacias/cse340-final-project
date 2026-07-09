@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+<main style="max-width: 800px; margin: 40px auto; padding: 0 20px; font-family: sans-serif;">
+    
+    <a href="/directory" class="back-link" style="text-decoration: none; color: #0056b3; display: inline-block; margin-bottom: 20px;">
+        ← Back to Global Directory
+    </a>
+
+    <article class="temple-detail-container" style="background: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+        <h1 style="font-size: 2.5rem; color: #111; margin-bottom: 10px;"><%= item.title %></h1>
+        
+        <div class="meta-info" style="margin-bottom: 20px; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <p style="margin: 5px 0;"><strong>Status:</strong> <span class="status-tag" style="background: #eef2f7; padding: 4px 8px; border-radius: 4px;"><%= item.rawStatus %></span></p>
+            <% if (item.date) { %>
+                <p style="margin: 5px 0; color: #555;"><strong>Date/Timeline:</strong> <%= item.date %></p>
+            <% } %>
+        </div>
+
+        <div class="content-body" style="font-size: 1.1rem; line-height: 1.6; color: #333;">
+            <p><%= item.snippet %></p>
+        </div>
+    </article>
+    
+</main>
+<%- include('partials/footer') %>

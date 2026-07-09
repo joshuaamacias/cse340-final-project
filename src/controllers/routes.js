@@ -40,5 +40,7 @@ router.use('/contact', contactRoutes);
 
 router.get('/logout', processLogout);
 router.get('/dashboard', requireLogin, showDashboard);
+// Add this alongside your other directory/home GET routes
+router.get('/temples/:id', templeController.showTempleDetail);
 
 export default router;

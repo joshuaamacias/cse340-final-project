@@ -21,4 +21,12 @@ templeModel.getHomeTemples = async () => {
     return result.rows;
 };
 
+// Fetch a single temple by its ID for the detail page
+templeModel.getTempleById = async (id) => {
+    // FIXED: Uses temple_id instead of id to match your table columns
+    const sql = 'SELECT * FROM public.temples WHERE temple_id = $1';
+    const result = await query(sql, [id]);
+    return result.rows[0]; // Returns just the single record found
+};
+
 export default templeModel;
