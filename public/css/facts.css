@@ -1,0 +1,184 @@
+/* ==========================================================================
+   INTERESTING FACTS PAGE STYLES
+   ========================================================================== */
+
+/* Top Header Banner */
+.facts-banner {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    /* Rich wooden/gold door detail style background matching image_17ca01.jpg */
+    background: #1e1710 url('https://www.churchofjesuschrist.org/imgs/0f1b6d1d7dee7237a98b7bf9feec68bbef7b3804/full/800,/0/default') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #f7f5f0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    font-family: 'Times New Roman', Times, serif;
+}
+.facts-banner::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30, 23, 16, 0.7); 
+    z-index: 1;
+}
+.facts-banner-text {
+    position: relative;
+    z-index: 2;
+}
+.facts-banner h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin: 0 0 5px 0;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.facts-banner p {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin: 0;
+    color: #c9bdae;
+    text-transform: uppercase;
+}
+
+/* Two-Column Split Layout Grid */
+.facts-layout-grid {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 50px;
+    font-family: Arial, sans-serif;
+}
+
+/* Left Sidebar Navigation */
+.facts-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+}
+.facts-menu-title {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #333;
+    border-bottom: 2px solid #968c6d;
+    padding-bottom: 6px;
+    margin: 0 0 12px 0;
+    font-family: 'Times New Roman', Times, serif;
+}
+.facts-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.facts-menu-list li a {
+    display: block;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #f0eade;
+    transition: all 0.2s;
+}
+/* Active state matching olive-gold tone from image_17ca01.jpg */
+.facts-menu-list li a.active {
+    background-color: #968c6d; 
+    color: white !important;
+    font-weight: bold;
+}
+.facts-menu-list li a:hover:not(.active) {
+    background-color: #f7f5f0;
+    color: #968c6d;
+    padding-left: 18px;
+}
+
+/* Sidebar Display Box */
+.facts-sidebar-card {
+    background: #fafaf8;
+    border-left: 3px solid #968c6d;
+    padding: 15px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #444;
+}
+.facts-sidebar-card em {
+    display: block;
+    margin-bottom: 8px;
+    font-style: italic;
+}
+.facts-sidebar-card span {
+    display: block;
+    text-align: right;
+    color: #777;
+    font-size: 0.82rem;
+}
+.facts-sidebar-text {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.5;
+}
+.text-danger-bold {
+    color: #b30000;
+    font-weight: bold;
+}
+
+/* Main Content Column Workspace */
+.facts-content-pane {
+    color: #222;
+}
+.facts-content-pane h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.2rem;
+    margin: 0 0 10px 0;
+    color: #222;
+    font-weight: 400;
+}
+.facts-intro-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 40px;
+}
+.facts-section-title {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    color: #333;
+    margin: 30px 0 15px 0;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* Content Lists */
+.facts-list {
+    margin: 0 0 40px 0;
+    padding-left: 20px;
+}
+.facts-list li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    color: #444;
+}
+.facts-list li a {
+    color: #968c6d;
+    text-decoration: underline;
+    text-decoration-color: rgba(150, 140, 109, 0.4);
+    transition: color 0.2s;
+}
+.facts-list li a:hover {
+    color: #6e654b;
+}
+
+/* Responsive Structural Break */
+@media (max-width: 768px) {
+    .facts-layout-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
