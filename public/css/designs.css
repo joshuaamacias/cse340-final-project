@@ -1,10 +1,9 @@
 /* ==========================================================================
-   INTERESTING FACTS PAGE STYLES
+   TEMPLE DESIGNS PAGE STYLES
    ========================================================================== */
 
 /* Top Header Banner */
-/* Top Header Banner using the Salt Lake Temple Door Asset */
-.facts-banner, .designs-banner {
+.designs-banner {
     position: relative;
     width: 100%;
     height: 180px;
@@ -18,25 +17,25 @@
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     font-family: 'Times New Roman', Times, serif;
 }
-.facts-banner::after {
+.designs-banner::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(30, 23, 16, 0.7); 
     z-index: 1;
 }
-.facts-banner-text {
+.designs-banner-text {
     position: relative;
     z-index: 2;
 }
-.facts-banner h1 {
+.designs-banner h1 {
     font-size: 2rem;
     letter-spacing: 2px;
     margin: 0 0 5px 0;
     font-weight: 300;
     text-transform: uppercase;
 }
-.facts-banner p {
+.designs-banner p {
     font-size: 0.9rem;
     letter-spacing: 1px;
     margin: 0;
@@ -45,7 +44,7 @@
 }
 
 /* Two-Column Split Layout Grid */
-.facts-layout-grid {
+.designs-layout-grid {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
@@ -56,12 +55,12 @@
 }
 
 /* Left Sidebar Navigation */
-.facts-sidebar {
+.designs-sidebar {
     display: flex;
     flex-direction: column;
     gap: 35px;
 }
-.facts-menu-title {
+.designs-menu-title {
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -71,12 +70,12 @@
     margin: 0 0 12px 0;
     font-family: 'Times New Roman', Times, serif;
 }
-.facts-menu-list {
+.designs-menu-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.facts-menu-list li a {
+.designs-menu-list li a {
     display: block;
     padding: 10px 12px;
     text-decoration: none;
@@ -85,20 +84,20 @@
     border-bottom: 1px solid #f0eade;
     transition: all 0.2s;
 }
-/* Active state matching olive-gold tone from image_17ca01.jpg */
-.facts-menu-list li a.active {
+/* Active state block matching image_17d9e3.jpg */
+.designs-menu-list li a.active {
     background-color: #968c6d; 
     color: white !important;
     font-weight: bold;
 }
-.facts-menu-list li a:hover:not(.active) {
+.designs-menu-list li a:hover:not(.active) {
     background-color: #f7f5f0;
     color: #968c6d;
     padding-left: 18px;
 }
 
-/* Sidebar Display Box */
-.facts-sidebar-card {
+/* Sidebar Display Components */
+.designs-sidebar-card {
     background: #fafaf8;
     border-left: 3px solid #968c6d;
     padding: 15px;
@@ -106,18 +105,18 @@
     line-height: 1.6;
     color: #444;
 }
-.facts-sidebar-card em {
+.designs-sidebar-card em {
     display: block;
     margin-bottom: 8px;
     font-style: italic;
 }
-.facts-sidebar-card span {
+.designs-sidebar-card span {
     display: block;
     text-align: right;
     color: #777;
     font-size: 0.82rem;
 }
-.facts-sidebar-text {
+.designs-sidebar-text {
     font-size: 0.85rem;
     color: #555;
     line-height: 1.5;
@@ -128,57 +127,79 @@
 }
 
 /* Main Content Column Workspace */
-.facts-content-pane {
+.designs-content-pane {
     color: #222;
 }
-.facts-content-pane h2 {
+.designs-content-pane h2 {
     font-family: 'Times New Roman', Times, serif;
     font-size: 2.2rem;
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
     color: #222;
     font-weight: 400;
 }
-.facts-intro-text {
+.designs-intro-text {
     font-size: 0.95rem;
     line-height: 1.6;
     color: #555;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
-.facts-section-title {
+
+/* Media Item Architecture for Historical Design Eras */
+.design-era-block {
+    margin-bottom: 35px;
+}
+.design-era-title {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.25rem;
     text-transform: uppercase;
     color: #333;
-    margin: 30px 0 15px 0;
+    margin: 0 0 15px 0;
     letter-spacing: 0.5px;
     font-weight: 600;
+    border-bottom: 1px dashed #e2dacb;
+    padding-bottom: 4px;
 }
-
-/* Content Lists */
-.facts-list {
-    margin: 0 0 40px 0;
-    padding-left: 20px;
+.design-era-body {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
 }
-.facts-list li {
+.design-era-img {
+    width: 160px;
+    height: 110px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    flex-shrink: 0;
+    background-color: #fafaf8;
+}
+.design-era-text {
     font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 12px;
     color: #444;
+    margin: 0;
 }
-.facts-list li a {
+.design-era-text a {
     color: #968c6d;
     text-decoration: underline;
     text-decoration-color: rgba(150, 140, 109, 0.4);
     transition: color 0.2s;
 }
-.facts-list li a:hover {
+.design-era-text a:hover {
     color: #6e654b;
 }
 
-/* Responsive Structural Break */
+/* Responsive Layout Modification */
 @media (max-width: 768px) {
-    .facts-layout-grid {
+    .designs-layout-grid {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
+    .design-era-body {
+        flex-direction: column;
+    }
+    .design-era-img {
+        width: 100%;
+        height: 200px;
     }
 }

@@ -4,10 +4,10 @@
 
 /* Top Header Banner */
 .library-banner {
-    position: relative;
+   position: relative;
     width: 100%;
     height: 180px;
-    background: #2b2316 url('https://www.churchofjesuschrist.org/imgs/0f1b6d1d7dee7237a98b7bf9feec68bbef7b3804/full/800,/0/default') center/cover no-repeat;
+    background: #1e1710 url('https://www.churchofjesuschrist.org/imgs/0f1b6d1d7dee7237a98b7bf9feec68bbef7b3804/full/800,/0/default') center/cover no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
