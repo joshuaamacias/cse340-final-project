@@ -1,0 +1,184 @@
+<%- include('../partials/header') %>
+
+<!-- Link the specific stylesheet for this page -->
+<link rel="stylesheet" href="/css/quotes.css">
+
+<!-- Top Banner Container Header -->
+<div class="library-banner">
+    <div class="library-banner-text">
+        <h1>Temples of the Church of Jesus Christ of Latter-day Saints</h1>
+        <p>Library &gt; Quotes</p>
+    </div>
+</div>
+
+<!-- Main Split Body Frame -->
+<div class="library-layout-grid">
+    
+    <!-- Left Navigation Block Column -->
+    <aside class="lib-sidebar">
+        <div>
+            <h3 class="lib-menu-title">Library</h3>
+            <ul class="lib-menu-list">
+                <li><a href="/library/quotes" class="active">Quotes</a></li>
+                <li><a href="/library/facts">Interesting Facts</a></li>
+                <li><a href="/library/designs">Temple Designs</a></li>
+                <li><a href="/library/proposed">Proposed Temples</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="lib-menu-title">Temple Quote</h3>
+            <div class="sidebar-feature-card">
+                <em>"It is plain that a Temple is more than chapel or church...; it is a structure erected as the House of the Lord, sacred to the closest communion between the Lord Himself and the Holy Priesthood..."</em>
+                <span>— James E. Talmage</span>
+            </div>
+        </div>
+
+        <div class="sidebar-disclaimer">
+            <h3 class="lib-menu-title">Disclaimer</h3>
+            <p>This archive database compiles historical statements and scriptural references regarding temple worship for academic exploration and personal reference study guidelines.</p>
+        </div>
+    </aside>
+
+    <!-- Right Content Column Pane listing all Quotes cleanly -->
+    <main class="library-content-pane">
+        <h2>Quotes</h2>
+
+        <% 
+        const templeQuotes = [
+            { text: "Firmly resolve now that you will do everything you can do to aid temple work and the genealogical work that supports it and to assist every living soul and every soul beyond the veil in every way you can with every resource at your disposal. Come to the temple!", author: "Boyd K. Packer" },
+            { text: "At the temple the dust of distraction seems to settle out, the fog and the haze seem to lift, and we can 'see' things that we were not able to see before and find a way through our troubles that we had not previously known.", author: "Boyd K. Packer" },
+            { text: "It is plain that a Temple is more than chapel or church…; it is a structure erected as the House of the Lord, sacred to the closest communion between the Lord Himself and the Holy Priesthood, and devoted to the highest and most sacred ordinances characteristic of the age or dispensation to which the particular Temple belongs.", author: "James E. Talmage" },
+            { text: "The earliest [temples] stand as monuments to the faith and vision of our beloved pioneers. Each temple constructed by them resulted from their great personal sacrifice and effort. Each one stands as a stunning jewel in the crown of pioneer achievement.", author: "Russell M. Nelson" },
+            { text: "And what agreement hath the temple of God with idols? for ye are the temple of the living God; as God hath said, I will dwell in them, and walk in them; and I will be their God, and they shall be my people.", author: "2 Corinthians 6:16" },
+            { text: "We have thought of thy lovingkindness, O God, in the midst of thy temple.", author: "Psalms 48:9" },
+            { text: "The temple is the house of the Lord. The basis for every temple ordinance and covenant…is the Atonement of Jesus Christ. Every activity, every lesson, all we do in the Church, point to the Lord and His holy house.", author: "Russell M. Nelson" },
+            { text: "The temple is a point of intersection between heaven and earth. In this sacred place, holy work will be performed through selfless service and love. The temple reminds me of all that is good and beautiful in the world.", author: "David A. Bednar" },
+            { text: "I am deeply interested in this work. I am anxious to encourage the people to press on in securing their genealogies and after doing so in laboring in our temples.", author: "Heber J. Grant" },
+            { text: "I should not like to contemplate an existence, especially one that is going to continue forever, if I could not enjoy that existence with those whom I love. And so we build temples in the name of the Lord.", author: "Hugh B. Brown" },
+            { text: "If you don’t yet love to attend the temple, go more often — not less. Let the Lord, through His Spirit, teach and inspire you there. I promise you that over time, the temple will become a place of safety, solace and revelation.", author: "Russell M. Nelson" },
+            { text: "Behold, I will send you Elijah the prophet before the coming of the great and dreadful day of the Lord: And he shall turn the heart of the fathers to the children, and the heart of the children to their fathers, lest I come and smite the earth with a curse.", author: "Malachi 4:5–6" },
+            { text: "Organize yourselves; prepare every needful thing; and establish a house, even a house of prayer, a house of fasting, a house of faith, a house of learning, a house of glory, a house of order, a house of God.", author: "Doctrine & Covenants 88:119" },
+            { text: "It is in temples—whether they be the portable tabernacle of testimony used by Moses, or the magnificent wonder of the world built by Solomon, or the temples of the latter days—that the saints receive the mysteries of godliness.", author: "Bruce R. McConkie" },
+            { text: "Verily I say unto you, that it is my will that a house should be built unto me in the land of Zion, like unto the pattern which I have given you. Yea, let it be built speedily, by the tithing of my people.", author: "Doctrine & Covenants 97:10–11" },
+            { text: "My brothers and sisters, temples are more than stone and mortar. They are filled with faith and fasting. They are built of trials and testimonies. They are sanctified by sacrifice and service.", author: "Thomas S. Monson" },
+            { text: "Prepare now for the temple, the mountain of the Lord. Never allow the goal of the temple to be out of your sight. Walk into His presence in purity and virtue, and receive His blessings—even 'all that he hath.'", author: "Elaine S. Dalton" },
+            { text: "To those who have received these blessings, I invite you to prepare yourselves to savor again the experience of being within the sacred premises of the holy temples of God and have the visions of life eternal open again to your hearts, minds, and souls.", author: "James E. Faust" },
+            { text: "We should expect that the adversary will try to interfere with us as…we seek to participate in this sacred and inspired work. The interference can vary from the terrible persecutions of the earlier days to apathy toward the work. The latter is perhaps the most dangerous and debilitating.", author: "Boyd K. Packer" },
+            { text: "As we come unto Christ and journey to higher ground, we will desire to spend more time in His temples, because the temples represent higher ground, sacred ground.", author: "Joseph B. Wirthlin" },
+            { text: "A temple is a place in which those whom He has chosen are endowed with power from on high—a power which enables us to use our gifts and capabilities—to bring to pass our Heavenly Father's purposes in our own lives and the lives of those we love.", author: "David B. Haight" },
+            { text: "Behold, I will send my messenger, and he shall prepare the way before me: and the Lord, whom ye seek, shall suddenly come to his temple, even the messenger of the covenant, whom ye delight in: behold, he shall come, saith the Lord of hosts.", author: "Malachi 3:1" },
+            { text: "You are never lost when you can see the temple. The temple will provide direction for you and your family in a world filled with chaos. It is an eternal guidepost which will help you from getting lost in the 'mist of darkness.'", author: "Gary E. Stevenson" },
+            { text: "Clearly, when we baptize, our eyes should gaze beyond the baptismal font to the holy temple. The great garner into which the sheaves should be gathered is the holy temple.", author: "Neal A. Maxwell" },
+            { text: "Just as the Salt Lake Temple took 40 years to build, stone by stone, you are building a virtuous life, step by step.", author: "Mary N. Cook" },
+            { text: "My dear brothers and sisters, construction of these temples may not change your life, but your time in the temple surely will. In that spirit, I bless you to identify those things you can set aside so you can spend more time in the temple.", author: "Russell M. Nelson" },
+            { text: "Your endowment is, to receive all those ordinances in the house of the Lord, which are necessary for you, after you have departed this life, to enable you to walk back to the presence of the Father.", author: "Brigham Young" },
+            { text: "Finally it may be said that the temple endowment is not secret. All who meet the requirements for entrance to the temple may enjoy it. ", author: "John A. Widtsoe" },
+            { text: "Else what shall they do which are baptized for the dead, if the dead rise not at all? why are they then baptized for the dead?", author: "1 Corinthians 15:29" },
+            { text: "I have a suggestion: When a temple is conveniently nearby, small things may interrupt your plans to go to the temple. Set specific goals, considering your circumstances, of when you can and will participate in temple ordinances. Then do not allow anything to interfere with that plan.", author: "Richard G. Scott" },
+            { text: "Every foundation stone that is laid for a Temple, and every Temple completed according to the order the Lord has revealed for his holy Priesthood, lessens the power of Satan on the earth, and increases the power of God and Godliness.", author: "George Q. Cannon" },
+            { text: "For thou hadst cast me into the deep, in the midst of the seas….Then I said, I am cast out of thy sight; yet I will look again toward thy holy temple. ", author: "Jonah 2:3–4" },
+            { text: "Because Jesus Christ is at the center of everything we do in the temple, as you think more about the temple, you will be thinking more about Him.", author: "Russell M. Nelson" },
+            { text: "We do not come to the temple to hide from or escape the evils of the world. Rather, we come to the temple to conquer the world of evil.", author: "David A. Bednar" },
+            { text: "In the temple we face the sunlight of truth. The light of the temple, that understanding, shines upon us as does the light of the sun. And the shadows of sin and ignorance and error, of disappointment and failure, fall behind us. Nowhere quite equals the temple.", author: "Boyd K. Packer" },
+            { text: "Each temple building is an inspiration, magnificent and beautiful in every way, but the temple building alone does not bless. The endowed blessings and divine functions—come through obedience and faithfulness to priesthood authority and covenants made.", author: "James E. Faust" },
+            { text: "Thus Israel gathers for the purpose of building temples in which the ordinances of salvation and exaltation are performed for the living and the dead.", author: "Bruce R. McConkie" },
+            { text: "Hundreds of thousands of faithful members participate in the unselfish service we call 'temple work,' which has no motive other than love and service for our fellowmen, living and dead.", author: "Elder Dallin H. Oaks" },
+            { text: "What a glorious thing it is for us to have the privilege of going to the temple for our own blessings. Then after going to the temple for our own blessings, what a glorious privilege to do the work for those who have gone on before us.", author: "Howard W. Hunter" },
+            { text: "There are more temples across the earth than there have ever been. More people in all the world have felt the Spirit of Elijah move them to record the identities and facts of their ancestors' lives.", author: "Henry B. Eyring" },
+            { text: "The crowning blessings of the gospel are received in temples, in holy sanctuaries apart from the world, in the places where only the faithful assemble.", author: "Bruce R. McConkie" },
+            { text: "And Jesus went into the temple of God, and cast out all them that sold and bought in the temple, and overthrow the tables of the moneychangers, and the seats of them that sold doves.", author: "Matthew 21:12" },
+            { text: "Therefore let the Saints be diligent in building the Temple, and all houses which they have been, or shall hereafter be, commanded of God to build; and wait their time with patience in all meekness, faith, perseverance unto the end.", author: "Joseph Smith" },
+            { text: "Each of our temples is an expression of our testimony that life beyond the grave is as real and as certain as is our life here on earth. I so testify.", author: "Thomas S. Monson" },
+            { text: "Whenever any kind of upheaval occurs in your life, the safest place to be spiritually is living inside your temple covenants.", author: "Russell M. Nelson" },
+            { text: "I urge all who have not yet received these greatest of all blessings within the walls of the temple to do whatever may be necessary to qualify to receive them.", author: "James E. Faust" },
+            { text: "Into this house, when it is completed, we expect to enter to enjoy the blessings of the priesthood, and receive our washings, our anointings, our endowments, and our sealings; and the brethren will be sealed to brethren to connect the links and make perfect the chain from ourselves to Father Adam.", author: "Brigham Young" },
+            { text: "And [there were] other choice spirits who were reserved to come forth in the fulness of times to take part in laying the foundations of the great latter-day work, including the building of the temples and the performance of ordinances therein.", author: "Doctrine & Covenants 138:53–54" },
+            { text: "It is in the ordinances of the temple that we are placed under covenant to Him….[If] we will enter into our covenants without reservation or apology, the Lord will protect us. We will receive inspiration sufficient for the challenges of life.", author: "Boyd K. Packer" },
+            { text: "And they pitched their tents round about the temple, every man having his tent with the door thereof towards the temple, that thereby they might remain in their tents and hear the words which king Benjamin should speak unto them.", author: "Mosiah 2:6" },
+            { text: "But the Lord is in his holy temple: let all the earth keep silence before him.", author: "Habakkuk 2:20" },
+            { text: "I personally regard all of the houses of the Lord as the work of Jehovah, initiated by him, built by him, designed by him, and dedicated to him and his program.", author: "Spencer W. Kimball" },
+            { text: "And daily in the temple, and in every house, they ceased not to teach and preach Jesus Christ.", author: "Acts 5:42" },
+            { text: "For thou knowest that we have done this work through great tribulation; and out of our poverty we have given of our substance to build a house to thy name, that the Son of Man might have a place to manifest himself to his people.", author: "Doctrine & Covenants 109:5" },
+            { text: "Go, stand and speak in the temple to the people all the words of this life. And when they heard that, they entered into the temple early in the morning, and taught.", author: "Acts 5:20–21" },
+            { text: "Just as our Redeemer gave His life as a vicarious sacrifice for all men, and in so doing became our Savior, even so we, in a small measure, when we engage in proxy work in the temple, become as saviors to those on the other side.", author: "Gordon B. Hinckley" },
+            { text: "Everything that occurs in the temple is uplifting and ennobling. It speaks of life here and life beyond the grave. It speaks of the importance of the individual as a child of God. It speaks of the importance of the family and the eternity of the marriage relationship.", author: "Gordon B. Hinckley" },
+            { text: "Though I live with it, this matter of temple construction is a thing of awesome wonder to me. We are trying to build in such a way and in such places across the world that these houses of the Lord may stand and serve through the Millennium.", author: "Gordon B. Hinckley" },
+            { text: "We love and cherish our dedicated temples and the essential, exalting ordinances that are performed there. We thank heaven and the presiding Brethren that more and more of them are being built, giving more and more of us greater access to them.", author: "Jeffrey R. Holland" },
+            { text: "As a result of the sacred ordinances performed in the holy house of God, no light need be permanently extinguished, no voice permanently stilled, no place in our heart permanently left vacant.", author: "Thomas S. Monson" },
+            { text: "But let us…recite the crowning reason for gathering to Zion or to her stakes. It is to receive the blessings found in the temples of the Lord.", author: "Bruce R. McConkie" },
+            { text: "The temple endowment was given by revelation. Thus, it is best understood by revelation, prayerfully sought with a sincere heart. ", author: "Russell M. Nelson" },
+            { text: "Let us truly be a temple-attending and a temple-loving people….Let us make the temple, with temple worship and temple covenants and temple marriage, our ultimate earthly goal and the supreme mortal experience.", author: "Howard W. Hunter" },
+            { text: "Bible prophecies indicate that in the last dispensation of the gospel, there would be a restoration of all of the principles and practices of former dispensations, which includes temple-building and the performing of ordinances therein.", author: "David B. Haight" },
+            { text: "What I am trying to teach is that when we keep the temple covenants we have made and when we live righteously in order to maintain the blessings promised by those ordinances, then come what may, we have no reason to worry or to feel despondent.", author: "Richard G. Scott" },
+            { text: "Within the sound of my voice are many young women, young men, and children. I plead with you to be worthy, to be steadfast, and to look forward with great anticipation to the day you will receive the ordinances and blessings of the temple.", author: "David A. Bednar" },
+            { text: "The time will come when there will be temples established over every portion of the land, and we will go into these temples and work for our kindred dead night and day.", author: "Lorenzo Snow" },
+            { text: "The Lord is in his holy temple, the Lord's throne is in heaven: his eyes behold, his eyelids try, the children of men.", author: "Psalms 11:4" },
+            { text: "Within the sound of my voice are individuals who have received the ordinances of the temple and for various reasons have not returned to the house of the Lord in quite some time. Please repent, prepare, and do whatever needs to be done so you can again worship in the temple and more fully remember and honor your sacred covenants.", author: "David A. Bednar" },
+            { text: "The temple was a place of learning for the Savior when He was on the earth; it was very much a part of His life. Temple blessings are available once again in our day.", author: "James E. Faust" },
+            { text: "I have the conviction that the Lord will bless us as we attend to the sacred ordinance work of the temples. Blessings there will not be limited to our temple service. We will be blessed in all of our affairs. We will be eligible to have the Lord take an interest in our affairs both spiritual and temporal.", author: "Boyd K. Packer" },
+            { text: "For verily this generation shall not all pass away until an house shall be built unto the Lord, and a cloud shall rest upon it, which cloud shall be even the glory of the Lord, which shall fill the house.", author: "Doctrine & Covenants 84:5" },
+            { text: "The temple is concerned with things of immortality. It is a bridge between this life and the next. All of the ordinances that take place in the house of the Lord are expressions of our belief in the immortality of the human soul.", author: "Gordon B. Hinckley" },
+            { text: "And early in the morning [Jesus] came again into the temple, and all the people came unto him; and he sat down, and taught them.", author: "John 8:2" },
+            { text: "There, in the house of the Lord, you can learn what you need to know to be truly free. There, tucked away from turmoil and strife, is the chance to be totally unselfish—a rarity in today's world.", author: "Robert L. Simpson" },
+            { text: "If we can literally be 'caught up' in any work in the church, it is this work relating to genealogical research and to the temples. This, because there is the spirit of Elijah. The prophets have spoken of it. The Saints have felt it; and following the inspiration of it they have come to the temple to do the sacred work for both the living and the dead.", author: "Boyd K. Packer" },
+            { text: "The temple is a place of holiness. It is the most sacred and holy place on earth and should be treated with the greatest degree of reverence and respect.", author: "L. Lionel Kendrick" },
+            { text: "Temples are the greatest university of learning known to man, giving us knowledge and wisdom about the Creation of the world. Endowment instructions give guidance as to how we should conduct our lives here in mortality.", author: "Robert D. Hales" },
+            { text: "Temples are places of personal revelation. When I have been weighed down by a problem or a difficulty, I have gone to the House of the Lord with a prayer in my heart for answers. The answers have come in clear and unmistakable ways.", author: "Ezra Taft Benson" },
+            { text: "In addition to temples, surely another holy place on earth ought to be our homes. The feelings of holiness in my home prepared me for feelings of holiness in the temple.", author: "James E. Faust" },
+            { text: "And I, Nephi, did build a temple; and I did construct it after the manner of the temple of Solomon…and the workmanship thereof was exceedingly fine.", author: "2 Nephi 5:16" },
+            { text: "What are these which are arrayed in white robes? and whence came they? …And he said to me, These are they which came out of great tribulation, and have washed their robes, and made them white in the blood of the Lamb.", author: "Revelation 7:13–14" },
+            { text: "In order that this work may be done, we must have Temples in which to do it; and what I wish to say to you, my brethren and sisters, is that the God of heaven requires us to rise up and build them, that the work of redemption may be hastened. Our reward will meet us when we go behind the veil.", author: "Wilford Woodruff" },
+            { text: "The Lord is directing us to build these temples to help us think celestial. God lives. Jesus is the Christ. His Church has been restored to bless all of God’s children.", author: "Russell M. Nelson" },
+            { text: "There is a difference in just attending the temple and having a rich spiritual experience. The real blessings of the temple come as we enhance our temple experience. To do so, we must feel a spirit of reverence for the temple and a spirit of worship.", author: "L. Lionel Kendrick" },
+            { text: "When you come to the temple you will love your family with a deeper love than you have ever felt before. The temple is about families.", author: "Richard H. Winkel" },
+            { text: "We continue to build temples. We desire that as many members as possible have an opportunity to attend the temple without having to travel inordinate distances.", author: "Thomas S. Monson" },
+            { text: "[The temple] is where we climb high above the smoke and the fog of these earthly things and we learn to read by God's eternal stars a course that will lead us safely back home.", author: "Harold B. Lee" },
+            { text: "I would advise all the Saints to go to with their might and gather together all their living relatives to this place, that they may be sealed and saved, that they may be prepared against the day that the destroying angel goes forth.", author: "Joseph Smith" },
+            { text: "If any man defile the temple of God, him shall God destroy; for the temple of God is holy, which temple ye are.", author: "I Corinthians 3:17" },
+            { text: "[T]he spirits of the dead gathered around me, wanting to know why we did not redeem them. Said they, '…We laid the foundation of the government you now enjoy, and we never apostatized from it, but we remained true to it and were faithful to God.' These were the signers of the Declaration of Independence.", author: "Wilford Woodruff" },
+            { text: "Each [temple] stands as a beacon to the world, an expression of our testimony that God, our Eternal Father, lives, that He desires to bless us and, indeed, to bless His sons and daughters of all generations.", author: "Thomas S. Monson" },
+            { text: "I will worship toward thy holy temple, and praise thy name for thy lovingkindness and for thy truth: for thou hast magnified thy word above all thy name.", author: "Psalms 138:2" },
+            { text: "[Building this House] may be called a temporal work, but it pertains to the salvation of ourselves as well as our friends who have passed behind the veil, and also to the generations that are to come after us.", author: "Brigham Young" },
+            { text: "We know that Elijah did return—at least twice—after Malachi's promise.…At the Kirtland Temple, April 3, 1836, Elijah appeared to the Prophet and Oliver Cowdery and said, 'The keys of this dispensation are committed into your hands.'", author: "Russell M. Nelson" },
+            { text: "There exists a righteous unity between the temple and the home. Understanding the eternal nature of the temple will draw you to your family; understanding the eternal nature of the family will draw you to the temple.", author: "Gary E. Stevenson" },
+            { text: "And thou shalt bring Aaron and his sons unto the door of the tabernacle of the congregation, and wash them with water. And thou shalt put upon Aaron the holy garments, and anoint him, and sanctify him.", author: "Exodus 40:12–13" },
+            { text: "Jesus answered and said unto them, Destroy this temple, and in three days I will raise it up.", author: "John 2:19" },
+            { text: "And I saw another angel fly in the midst of heaven, having the everlasting gospel to preach unto them that dwell on the earth, and to every nation, and kindred, and tongue, and people.", author: "Revelation 14:6" },
+            { text: "We must build more temples, and we must build them more quickly. This is the season to build temples. They are needed, and we have the means to do so. The Lord will hold us accountable if we do not work with greater accomplishment than we are now doing.", author: "Gordon B. Hinckley" },
+            { text: "To you who are worthy and able to attend the temple, I would admonish you to go often. The temple is a place where we can find peace. There we receive a renewed dedication to the gospel and a strengthened resolve to keep the commandments.", author: "Thomas S. Monson" },
+            { text: "And it came to pass, that after three days they found him in the temple, sitting in the midst of the doctors, both hearing them, and asking them questions.", author: "Luke 2:46" },
+            { text: "No jot, iota, or tittle of the temple rites is otherwise than uplifting and sanctifying. In every detail the endowment ceremony contributes to covenants of morality of life, consecration of person to high ideals, devotion to truth, patriotism to nation, and allegiance to God.", author: "James E. Talmage" },
+            { text: "To accomplish this work there will have to be not only one temple but thousands of them, and thousands and tens of thousands of men and women will go into those temples and officiate for people who have lived as far back as the Lord shall reveal.", author: "Brigham Young" },
+            { text: "I know your lives are busy. I know that you have much to do. But I make you a promise that if you will go to the house of the Lord, you will be blessed; life will be better for you.", author: "Gordon B. Hinckley" },
+            { text: "And it shall come to pass in the last days, that the mountain of the Lord's house shall be established in the top of the mountains, and shall be exalted above the hills; and all nations shall flow unto it.", author: "Isaiah 2:2" },
+            { text: "I promise you that, with increased attendance in the temples of our God, you shall receive increased personal revelation to bless your life as you bless those who have died.", author: "Ezra Taft Benson" },
+            { text: "One thing have I desired of the Lord…that I may dwell in the house of the Lord all the days of my life, to behold the beauty of the Lord, and to enquire in his temple.", author: "Psalms 27:4" },
+            { text: "For behold, I have accepted this house, and my name shall be here; and I will manifest myself to my people in mercy in this house.", author: "Doctrine & Covenants 110:7" },
+            { text: "Each holy temple stands as a symbol of our membership in the Church, as a sign of our faith in life after death, and as a sacred step toward eternal glory for us and our families.", author: "Russell M. Nelson" },
+            { text: "I have hallowed this house, which thou hast built, to put my name there for ever; and mine eyes and mine heart shall be there perpetually.", author: "I Kings 9:3" },
+            { text: "I want to see the temple built in a manner that it will endure through the Millennium. This is not the only temple we shall build; there will be hundreds of them built and dedicated to the Lord.", author: "Brigham Young" },
+            { text: "I urge our people everywhere, with all of the persuasiveness of which I am capable, to live worthy to hold a temple recommend, to secure one and regard it as a precious asset, and to make a greater effort to go to the House of the Lord and partake of the spirit and the blessings to be had therein.", author: "Gordon B. Hinckley" },
+            { text: "Temple. One other word is equal in importance to a Latter-day Saint. Home. Put the words holy temple and home together, and you have described the house of the Lord!", author: "Boyd K. Packer" },
+            { text: "And thou shalt make a plate of pure gold, and grave upon it, like the engravings of a signet, HOLINESS TO THE LORD.", author: "Exodus 28:36" },
+            { text: "It is in these holy houses that faithful couples enter into the ordinance of celestial marriage through which they become parties to the Abrahamic covenant.", author: "Bruce R. McConkie" },
+            { text: "Moreover, because I have set my affection to the house of my God, I have of mine own proper good, of gold and silver, which I have given to the house of my God, over and above all that I have prepared for the holy house.", author: "1 Chronicles 29:3" },
+            { text: "In my distress I called upon the Lord, and cried to my God: and he did hear my voice out of his temple, and my cry did enter into his ears.", author: "2 Samuel 22:7" },
+            { text: "Regular temple attendance is one of the simplest ways you can bless those who are waiting in the spirit world. If you live near a temple, partake of the opportunity to go often and regularly.", author: "David B. Haight" },
+            { text: "Yea, and my presence shall be there, for I will come into it, and all the pure in heart that shall come into it shall see God.", author: "Doctrine & Covenants 97:16" },
+            { text: "We can carry this Temple forward with our labor, without any burden to ourselves if our hearts are in the work, and we will be blessed abundantly in doing so. We will be better off in our temporal affairs when it is completed than when we commenced.", author: "Brigham Young" },
+            { text: "As we touch the temple and love the temple, our lives will reflect our faith. As we go to the holy house, as we remember the covenants we make therein, we will be able to bear every trial and overcome each temptation.", author: "Thomas S. Monson" },
+            { text: "And ye are to be taught from on high. Sanctify yourselves and ye shall be endowed with power, that ye may give even as I have spoken.", author: "Doctrine & Covenants 43:16" }
+        ];
+
+        templeQuotes.forEach(quote => { %>
+            <div class="quote-item-block">
+                <p class="quote-text">"<%= quote.text %>"</p>
+                <p class="quote-author">— <%= quote.author %></p>
+            </div>
+        <% }) %>
+
+    </main>
+</div>
+
+<%- include('../partials/footer') %>
