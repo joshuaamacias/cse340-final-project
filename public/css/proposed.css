@@ -1,10 +1,9 @@
 /* ==========================================================================
-   INTERESTING FACTS PAGE STYLES
+   PROPOSED TEMPLES PAGE STYLES
    ========================================================================== */
 
 /* Top Header Banner */
-/* Top Header Banner using the Salt Lake Temple Door Asset */
-.facts-banner, .designs-banner {
+.proposed-banner {
     position: relative;
     width: 100%;
     height: 180px;
@@ -18,25 +17,25 @@
     text-shadow: 0 2px 4px rgba(0,0,0,0.8);
     font-family: 'Times New Roman', Times, serif;
 }
-.facts-banner::after {
+.proposed-banner::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(30, 23, 16, 0.7); 
     z-index: 1;
 }
-.facts-banner-text {
+.proposed-banner-text {
     position: relative;
     z-index: 2;
 }
-.facts-banner h1 {
+.proposed-banner h1 {
     font-size: 2rem;
     letter-spacing: 2px;
     margin: 0 0 5px 0;
     font-weight: 300;
     text-transform: uppercase;
 }
-.facts-banner p {
+.proposed-banner p {
     font-size: 0.9rem;
     letter-spacing: 1px;
     margin: 0;
@@ -45,7 +44,7 @@
 }
 
 /* Two-Column Split Layout Grid */
-.facts-layout-grid {
+.proposed-layout-grid {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
@@ -56,12 +55,12 @@
 }
 
 /* Left Sidebar Navigation */
-.facts-sidebar {
+.proposed-sidebar {
     display: flex;
     flex-direction: column;
     gap: 35px;
 }
-.facts-menu-title {
+.proposed-menu-title {
     font-size: 1.1rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -71,12 +70,12 @@
     margin: 0 0 12px 0;
     font-family: 'Times New Roman', Times, serif;
 }
-.facts-menu-list {
+.proposed-menu-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-.facts-menu-list li a {
+.proposed-menu-list li a {
     display: block;
     padding: 10px 12px;
     text-decoration: none;
@@ -85,20 +84,20 @@
     border-bottom: 1px solid #f0eade;
     transition: all 0.2s;
 }
-/* Active state matching olive-gold tone from image_17ca01.jpg */
-.facts-menu-list li a.active {
+/* Active state block matching image_183e83.jpg */
+.proposed-menu-list li a.active {
     background-color: #968c6d; 
     color: white !important;
     font-weight: bold;
 }
-.facts-menu-list li a:hover:not(.active) {
+.proposed-menu-list li a:hover:not(.active) {
     background-color: #f7f5f0;
     color: #968c6d;
     padding-left: 18px;
 }
 
-/* Sidebar Display Box */
-.facts-sidebar-card {
+/* Sidebar Display Components */
+.proposed-sidebar-card {
     background: #fafaf8;
     border-left: 3px solid #968c6d;
     padding: 15px;
@@ -106,18 +105,18 @@
     line-height: 1.6;
     color: #444;
 }
-.facts-sidebar-card em {
+.proposed-sidebar-card em {
     display: block;
     margin-bottom: 8px;
     font-style: italic;
 }
-.facts-sidebar-card span {
+.proposed-sidebar-card span {
     display: block;
     text-align: right;
     color: #777;
     font-size: 0.82rem;
 }
-.facts-sidebar-text {
+.proposed-sidebar-text {
     font-size: 0.85rem;
     color: #555;
     line-height: 1.5;
@@ -128,74 +127,75 @@
 }
 
 /* Main Content Column Workspace */
-.facts-content-pane {
+.proposed-content-pane {
     color: #222;
 }
-.facts-content-pane h2 {
+.proposed-content-pane h2 {
     font-family: 'Times New Roman', Times, serif;
     font-size: 2.2rem;
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
     color: #222;
     font-weight: 400;
+    text-transform: uppercase;
 }
-.facts-intro-text {
+.proposed-intro-text {
     font-size: 0.95rem;
     line-height: 1.6;
     color: #555;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
-.facts-section-title {
+
+/* Section Typography */
+.proposed-section {
+    margin-bottom: 35px;
+}
+.proposed-section h3 {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.25rem;
     text-transform: uppercase;
     color: #333;
-    margin: 30px 0 15px 0;
+    margin: 0 0 15px 0;
     letter-spacing: 0.5px;
     font-weight: 600;
 }
-
-/* Content Lists */
-.facts-list {
-    margin: 0 0 40px 0;
-    padding-left: 20px;
-}
-.facts-list li {
+.proposed-section p {
     font-size: 0.95rem;
     line-height: 1.6;
-    margin-bottom: 12px;
     color: #444;
-}
-.facts-list li a {
-    color: #968c6d;
-    text-decoration: underline;
-    text-decoration-color: rgba(150, 140, 109, 0.4);
-    transition: color 0.2s;
-}
-.facts-list li a:hover {
-    color: #6e654b;
+    margin: 0 0 15px 0;
 }
 
-/* Responsive Structural Break */
+/* Responsive Layout Modification */
 @media (max-width: 768px) {
-    .facts-layout-grid {
+    .proposed-layout-grid {
         grid-template-columns: 1fr;
         gap: 30px;
     }
 }
 
 /* References Section */
-.facts-references {
+.proposed-references {
     margin-top: 50px;
     padding-top: 20px;
-    border-top: 1px solid #e2dacb; /* Light gray divider line */
+    border-top: 1px solid #e2dacb; /* Light gray line matching the image */
 }
-.facts-references ol {
+.proposed-references ol {
     padding-left: 20px;
     margin: 0;
 }
-.facts-references li {
+.proposed-references li {
     font-size: 0.85rem;
-    color: #777; /* Subtle gray for footnote text */
+    color: #777; /* Slightly lighter gray for footnote text */
     line-height: 1.6;
     margin-bottom: 15px;
+    word-break: break-word; /* Prevents long URLs from breaking the layout */
+}
+.proposed-references li a {
+    color: #777;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.proposed-references li a:hover {
+    color: #968c6d;
+    text-decoration: underline;
 }
