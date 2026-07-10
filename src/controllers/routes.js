@@ -43,4 +43,25 @@ router.get('/dashboard', requireLogin, showDashboard);
 // Add this alongside your other directory/home GET routes
 router.get('/temples/:id', templeController.showTempleDetail);
 
+// ... your existing routes ...
+
+// ==========================================
+// LIBRARY STATIC ROUTES
+// ==========================================
+router.get('/library/quotes', (req, res) => {
+    res.render('library/quotes', { title: 'Inspired Temple Quotes' });
+});
+
+router.get('/library/facts', (req, res) => {
+    res.render('library/facts', { title: 'Interesting Temple Facts' });
+});
+
+router.get('/library/designs', (req, res) => {
+    res.render('library/designs', { title: 'Temple Architectural Designs' });
+});
+
+router.get('/library/proposed', (req, res) => {
+    res.render('library/proposed', { title: 'Proposed Temples Matrix' });
+});
+
 export default router;
