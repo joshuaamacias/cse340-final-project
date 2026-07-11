@@ -28,43 +28,122 @@ body {
 }
 
 /* ==========================================
-   2. HEADER & NAVIGATION
+   2. NEW ELEGANT HEADER STYLES
    ========================================== */
-header {
-    background-color: var(--primary-color);
-    color: #ffffff;
-    padding: 1.25rem 2rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    border-bottom: 4px solid var(--accent-color);
+.site-header {
+    position: relative;
+    width: 100%;
+    background-color: #ffffff;
+    font-family: 'Times New Roman', Times, serif;
+    z-index: 1000; /* Keeps nav above page content */
+}
+
+/* Thin Slate Bar at the very top */
+.header-top-bar {
+    background-color: #363c46; 
+    height: 12px; 
+    width: 100%;
+}
+
+/* Flex Container for alignment */
+.header-nav-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
+    height: 75px; 
+    max-width: 1100px; /* Changed from 1200px to match your main content width */
+    margin: 0 auto;
+    padding: 0 1.5rem; /* Changed from 20px to match your main content padding */
+    position: relative;
 }
 
-header h1 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+/* Hanging Logo Block */
+.header-logo-block {
+    position: absolute;
+    top: 0;
+    left: 20px; 
+    background-color: #a49d70; 
+    width: 130px;
+    height: 115px; /* Reduced from 150px to stop it from covering the banner text */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #ffffff;
+    z-index: 1001;
+    text-align: center;
+    padding: 10px; /* Reduced padding to give the image more space */
 }
 
-header nav ul {
+/* Logo Image inside the block */
+.header-logo-img {
+    width: 100%; /* Forces the image to fill the available space in the block */
+    max-width: 110px; /* Prevents it from getting too stretched out */
+    height: auto; 
+    margin: 0; /* Ensures no leftover margins push it around */
+    display: block;
+}
+
+/* Text inside the logo block */
+.header-logo-text {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    font-family: Arial, sans-serif; 
+}
+.header-logo-text span {
+    display: block;
+}
+
+/* Main Navigation Menu */
+.header-main-nav {
+    margin-left: auto; 
+}
+
+.header-main-nav ul {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    gap: 25px; 
 }
 
-header nav ul li a {
-    color: #f1f5f9;
+.header-main-nav a {
     text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
+    color: #9a8d6f; 
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     transition: color 0.2s ease;
 }
 
-header nav ul li a:hover {
-    color: #f59e0b; /* Golden highlight on hover */
+.header-main-nav a:hover,
+.header-main-nav a.active {
+    color: #5a5240; 
+}
+
+/* Responsive modification for smaller screens */
+@media (max-width: 768px) {
+    .header-nav-container {
+        flex-direction: column;
+        height: auto;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .header-logo-block {
+        position: relative;
+        left: 0;
+        margin-bottom: 20px;
+        height: auto;
+        padding: 20px;
+    }
+    .header-main-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
 }
 
 /* ==========================================

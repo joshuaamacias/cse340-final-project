@@ -8,25 +8,41 @@
     <%- renderStyles() %>
 </head>
 <body>
-    <header>
-        <h1>🛕 LDS Temple News Hub</h1>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/directory">Temples Directory</a></li>
-                <div class="dropdown">
-    <a href="#" class="dropbtn">Library ▾</a>
-    <div class="dropdown-content">
-        <a href="/library/quotes">Quotes</a>
-        <a href="/library/facts">Interesting Facts</a>
-        <a href="/library/designs">Temple Designs</a>
-        <a href="/library/proposed">Proposed Temples</a>
-    </div>
-</div>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/register">Register</a></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+        <!-- Top thin decorative bar -->
+        <div class="header-top-bar"></div>
+        
+        <div class="header-nav-container">
+            
+           <!-- Hanging Logo Block -->
+        <a href="/" class="header-logo-block">
+            <!-- Your logo image with text included -->
+            <img src="/images/temple-logo-white.png" alt="Temple Icon" class="header-logo-img">
+        </a>
+
+            <!-- Right-aligned Navigation -->
+            <nav class="header-main-nav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/directory">Temples Directory</a></li>
+                    
+                    <!-- Library Dropdown -->
+                    <li class="dropdown">
+                        <a href="#" class="dropbtn">Library ▾</a>
+                        <div class="dropdown-content">
+                            <a href="/library/quotes">Quotes</a>
+                            <a href="/library/facts">Interesting Facts</a>
+                            <a href="/library/designs">Temple Designs</a>
+                            <a href="/library/proposed">Proposed Temples</a>
+                        </div>
+                    </li>
+                    
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/login">Login</a></li>
+                    <li><a href="/register">Register</a></li>
+                </ul>
+            </nav>
+            
+        </div>
     </header>
     <main>
