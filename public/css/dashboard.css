@@ -1,0 +1,95 @@
+.dashboard-page {
+    max-width: none;
+    padding: 0 0 4rem;
+}
+
+.dashboard-hero {
+    min-height: 440px;
+    background-color: #17345c;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-hero-content,
+.dashboard-content {
+    width: min(1100px, calc(100% - 3rem));
+    margin: 0 auto;
+}
+
+.dashboard-hero-content {
+    color: white;
+    max-width: 1100px;
+}
+
+.dashboard-hero-content > * {
+    max-width: 610px;
+}
+
+.eyebrow {
+    color: #c7af72;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    margin: 0 0 .7rem;
+}
+
+.dashboard-hero h1 {
+    color: white;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.5rem, 5vw, 4.4rem);
+    line-height: 1.08;
+    margin: 0 0 1rem;
+}
+
+.dashboard-hero-content > p:not(.eyebrow) {
+    color: #f3f5f8;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    margin-bottom: 1.8rem;
+}
+
+.dashboard-primary-action {
+    background: #c7af72;
+    border-radius: 3px;
+    color: #192d4d;
+    display: inline-block;
+    font-weight: 700;
+    padding: .8rem 1.25rem;
+    text-decoration: none;
+}
+
+.dashboard-primary-action:hover { background: #e0cc94; }
+
+.dashboard-content {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-top: -3.5rem;
+    position: relative;
+}
+
+.dashboard-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(15, 35, 62, .16);
+    padding: 2rem;
+}
+
+.dashboard-card h2 { color: #17345c; font-size: 1.6rem; margin-bottom: 1.4rem; }
+.account-details { display: grid; gap: .8rem; }
+.account-details div { border-bottom: 1px solid #e8ebef; padding-bottom: .75rem; }
+.account-details dt { color: #687485; font-size: .78rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.account-details dd { margin: .15rem 0 0; }
+.dashboard-actions-card { display: flex; flex-direction: column; }
+.dashboard-actions-card > a { border-top: 1px solid #e8ebef; color: #17345c; font-weight: 600; padding: .8rem 0; text-decoration: none; }
+.dashboard-actions-card > a:hover { color: #a67821; }
+.dashboard-actions-card .sign-out { color: #7a3440; margin-top: auto; padding-bottom: 0; }
+.dashboard-actions-card span { float: right; }
+
+@media (max-width: 700px) {
+    .dashboard-hero { min-height: 400px; }
+    .dashboard-hero-content, .dashboard-content { width: min(100% - 2rem, 1100px); }
+    .dashboard-content { grid-template-columns: 1fr; margin-top: -2rem; }
+}

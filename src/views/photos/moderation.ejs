@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<section class="photo-page">
+    <p class="eyebrow">ADMINISTRATION</p>
+    <h1>Review Photo Submissions</h1>
+    <p class="photo-page-intro">Only approve photos that are relevant, respectful, and safe to publish.</p>
+    <% if (photos.length > 0) { %>
+        <div class="photo-grid moderation-grid">
+            <% photos.forEach(photo => { %>
+                <figure class="photo-card">
+                    <img src="<%= photo.file_path %>" alt="Submission for <%= photo.temple_name %>">
+                    <figcaption>
+                        <strong><%= photo.temple_name %></strong>
+                        <% if (photo.caption) { %><p><%= photo.caption %></p><% } %>
+                        <small>Submitted by <%= photo.contributor_name %> · <%= new Date(photo.created_at).toLocaleDateString() %></small>
+                        <form class="moderation-actions" method="POST" action="/admin/photos/<%= photo.id %>">
+                            <button name="status" value="approved" type="submit">Approve</button>
+                            <button class="reject-button" name="status" value="rejected" type="submit">Reject</button>
+                        </form>
+                    </figcaption>
+                </figure>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <div class="gallery-empty"><p>There are no photos waiting for review.</p></div>
+    <% } %>
+</section>
+<%- include('../partials/footer') %>

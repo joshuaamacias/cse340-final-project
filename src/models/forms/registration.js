@@ -22,8 +22,8 @@ const emailExists = async (email) => {
  */
 const saveUser = async (name, email, hashedPassword) => {
     const query = `
-        INSERT INTO users (name, email, password)
-        VALUES ($1, $2, $3)
+        INSERT INTO users (name, email, password, role_id)
+        VALUES ($1, $2, $3, (SELECT id FROM roles WHERE role_name = 'user'))
         RETURNING id, name, email, created_at
     `;
     const result = await db.query(query, [name, email, hashedPassword]);
@@ -36,8 +36,10 @@ const saveUser = async (name, email, hashedPassword) => {
  */
 const getAllUsers = async () => {
     const query = `
-        SELECT id, name, email, created_at
+        SELECT users.id, users.name, users.email, users.created_at,
+               roles.role_name AS "roleName"
         FROM users
+        INNER JOIN roles ON roles.id = users.role_id
         ORDER BY created_at DESC
     `;
     const result = await db.query(query);
@@ -91,11 +93,23 @@ const deleteUser = async (id) => {
     return result.rowCount > 0;
 };
 
+const updateUserRole = async (id, roleName) => {
+    const query = `
+        UPDATE users
+        SET role_id = (SELECT id FROM roles WHERE role_name = $1), updated_at = CURRENT_TIMESTAMP
+        WHERE id = $2
+        RETURNING id
+    `;
+    const result = await db.query(query, [roleName, id]);
+    return result.rowCount > 0;
+};
+
 export { 
     emailExists, 
     saveUser, 
     getAllUsers, 
     getUserById, 
     updateUser, 
-    deleteUser 
+    deleteUser,
+    updateUserRole
 };

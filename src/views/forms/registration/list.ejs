@@ -29,6 +29,10 @@
                                 <%= new Date(listUser.created_at).toLocaleDateString() %>
                             </div>                        
                         </div>                    
+                        <div class="detail-item">
+                            <div class="label">Role</div>
+                            <div class="value"><%= listUser.roleName %></div>
+                        </div>
                     </div>                
 
                     <% if (canEdit || canDelete) { %>
@@ -39,6 +43,16 @@
                             <% if (canDelete) { %>
                                 <form method="POST" action="/register/<%= listUser.id %>/delete" style="display: inline; margin-left: 10px;">
                                     <button type="submit" class="btn btn-delete" onclick="return confirm('Are you sure you want to delete this user?')">Delete</button>
+                                </form>
+                            <% } %>
+                            <% if (currentUser && currentUser.roleName === 'admin' && currentUser.id !== listUser.id) { %>
+                                <form method="POST" action="/register/<%= listUser.id %>/role" style="display: inline; margin-left: 10px;">
+                                    <label for="role-<%= listUser.id %>">Role</label>
+                                    <select id="role-<%= listUser.id %>" name="roleName">
+                                        <option value="user" <%= listUser.roleName === 'user' ? 'selected' : '' %>>Registered User</option>
+                                        <option value="admin" <%= listUser.roleName === 'admin' ? 'selected' : '' %>>Admin</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-edit">Save role</button>
                                 </form>
                             <% } %>
                         </div>

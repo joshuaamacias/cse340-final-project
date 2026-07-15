@@ -12,8 +12,10 @@ const findUserByEmail = async (email) => {
     // Use $1 placeholder for email parameter
     // Add LIMIT 1 to ensure only one result
     const queryText = `
-        SELECT id, name, email, password, created_at 
-        FROM users 
+        SELECT users.id, users.name, users.email, users.password, users.created_at,
+               roles.role_name AS "roleName"
+        FROM users
+        INNER JOIN roles ON roles.id = users.role_id
         WHERE LOWER(email) = LOWER($1) 
         LIMIT 1
     `;

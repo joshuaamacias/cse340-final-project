@@ -1,43 +1,35 @@
 <%- include('partials/header') %>
-<main>    
-    <div class="dashboard">        
-        <h1>Welcome to Your Dashboard</h1>        
-        <p>            
-            This is a protected page that requires authentication. Only logged-in users can access this content.        
-        </p>        
-        
-        <div class="user-info">            
-            <h2>Your Account Information</h2>            
-            
-            <div class="user-detail">
-                <span class="label">Name:</span>
-                <span class="value"><%= user.name %></span>
-            </div>
+<div class="dashboard-page">
+    <section class="dashboard-hero" style="background-image: linear-gradient(90deg, rgba(12, 32, 64, .88) 0%, rgba(12, 32, 64, .62) 44%, rgba(12, 32, 64, .15) 100%), url('<%= heroImage %>');">
+        <div class="dashboard-hero-content">
+            <p class="eyebrow">TEMPLE PROGRESS TRACKER</p>
+            <h1>Welcome back, <%= user.name.split(' ')[0] %>.</h1>
+            <p>Follow the work underway at temples around the world and see the latest progress shared by the community.</p>
+            <a class="dashboard-primary-action" href="/directory">Explore temples</a>
+        </div>
+    </section>
 
-            <div class="user-detail">
-                <span class="label">Email:</span>
-                <span class="value"><%= user.email %></span>
-            </div>
+    <section class="dashboard-content" aria-label="Your account and actions">
+        <div class="dashboard-card">
+            <p class="eyebrow">YOUR ACCOUNT</p>
+            <h2><%= user.name %></h2>
+            <dl class="account-details">
+                <div><dt>Email</dt><dd><%= user.email %></dd></div>
+                <div><dt>Role</dt><dd><%= user.roleName === 'admin' ? 'Administrator' : 'Registered User' %></dd></div>
+                <div><dt>Member since</dt><dd><%= new Date(user.created_at).toLocaleDateString() %></dd></div>
+            </dl>
+        </div>
 
-            <div class="user-detail">
-                <span class="label">Registered On:</span>
-                <span class="value">
-                    <%= new Date(user.created_at).toLocaleDateString() %>
-                </span>
-            </div>
-        </div>        
-        
-        <div class="session-debug">            
-            <h3>Session Information (For Learning Purposes)</h3>            
-            <p><em>This section shows your current session data for educational purposes.</em></p>                      
-            <p>                
-                <strong>If you see a password property in the above object you have a security vulnerability, fix it!</strong>            
-            </p>        
-        </div>        
-        
-        <div class="dashboard-actions">            
-            <a href="/logout" class="logout-button">Logout</a>        
-        </div>    
-    </div>
-</main>
+        <div class="dashboard-card dashboard-actions-card">
+            <p class="eyebrow">QUICK ACTIONS</p>
+            <h2>Where would you like to go?</h2>
+            <a href="/directory">Browse the temple directory <span aria-hidden="true">→</span></a>
+            <% if (user.roleName === 'admin') { %>
+                <a href="/register/list">Manage users and roles <span aria-hidden="true">→</span></a>
+            <% } %>
+            <a href="/contact">Contact the site team <span aria-hidden="true">→</span></a>
+            <a class="sign-out" href="/logout">Sign out</a>
+        </div>
+    </section>
+</div>
 <%- include('partials/footer') %>

@@ -8,7 +8,14 @@ import contactRoutes from './forms/contact.js';
 import registrationRoutes from './forms/registration.js';
 import loginRoutes from './forms/login.js';
 import { processLogout, showDashboard } from './forms/login.js';
-import { requireLogin } from '../middleware/auth.js';
+import { requireLogin, requireRole } from '../middleware/auth.js';
+import {
+    handlePhotoUpload,
+    submitPhoto,
+    showLatestPhotos,
+    showModerationQueue,
+    processModeration
+} from './photoController.js';
 
 const router = Router();
 
@@ -32,6 +39,7 @@ router.use('/contact', (req, res, next) => {
 // --- MAIN TEMPLE ROUTES ---
 router.get('/', templeController.getHome);
 router.get('/directory', templeController.getDirectory);
+router.get('/photos', showLatestPhotos);
 
 // --- AUTH & FORMS ROUTES ---
 router.use('/login', loginRoutes);
@@ -40,6 +48,9 @@ router.use('/contact', contactRoutes);
 
 router.get('/logout', processLogout);
 router.get('/dashboard', requireLogin, showDashboard);
+router.post('/temples/:id/photos', requireLogin, handlePhotoUpload, submitPhoto);
+router.get('/admin/photos', requireRole('admin'), showModerationQueue);
+router.post('/admin/photos/:id', requireRole('admin'), processModeration);
 // Add this alongside your other directory/home GET routes
 router.get('/temples/:id', templeController.showTempleDetail);
 

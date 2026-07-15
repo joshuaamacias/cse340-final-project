@@ -25,6 +25,7 @@
                 <ul>
                     <li><a href="/">Home</a></li>
                     <li><a href="/directory">Temples Directory</a></li>
+                    <li><a href="/photos">New Photos</a></li>
                     
                     <!-- Library Dropdown -->
                     <li class="dropdown">
@@ -38,8 +39,17 @@
                     </li>
                     
                     <li><a href="/contact">Contact</a></li>
-                    <li><a href="/login">Login</a></li>
-                    <li><a href="/register">Register</a></li>
+                    <% if (isLoggedIn) { %>
+                        <li><a href="/dashboard">Dashboard</a></li>
+                        <% if (user && user.roleName === 'admin') { %>
+                            <li><a href="/register/list">Manage Users</a></li>
+                            <li><a href="/admin/photos">Review Photos</a></li>
+                        <% } %>
+                        <li><a href="/logout">Logout</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/register">Register</a></li>
+                    <% } %>
                 </ul>
             </nav>
             

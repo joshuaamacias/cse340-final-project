@@ -26,16 +26,39 @@ const setupDatabase = async () => {
     
     if (hasData) {
         console.log('Database already seeded. Skipping seed process.');
-        return true;
+    } else {
+        // No roles found - run full seed
+        console.log('Seeding database with tables and default roles...');
+        const seedPath = join(__dirname, 'sql', 'seed.sql');
+        const seedSQL = fs.readFileSync(seedPath, 'utf8');
+        await db.query(seedSQL);
+        console.log('Database seeded successfully!');
     }
-    
-    // No roles found - run full seed
-    console.log('Seeding database with tables and default roles...');
-    const seedPath = join(__dirname, 'sql', 'seed.sql');
-    const seedSQL = fs.readFileSync(seedPath, 'utf8');
-    await db.query(seedSQL);
 
-    console.log('Database seeded successfully!');
+    // This migration is safe on every startup and preserves existing data.
+    await db.query(`
+        CREATE TABLE IF NOT EXISTS photos (
+            photo_id SERIAL PRIMARY KEY,
+            temple_id INTEGER NOT NULL REFERENCES temples(temple_id) ON DELETE CASCADE,
+            account_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+            image_path VARCHAR(500) NOT NULL UNIQUE,
+            caption TEXT,
+            is_approved BOOLEAN NOT NULL DEFAULT FALSE,
+            status VARCHAR(20) NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+            uploaded_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            moderated_at TIMESTAMP
+        );
+        -- Existing projects may already have a basic photos table. Add the
+        -- moderation fields before creating indexes that use them.
+        ALTER TABLE photos ADD COLUMN IF NOT EXISTS caption VARCHAR(280);
+        ALTER TABLE photos ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'pending';
+        ALTER TABLE photos ADD COLUMN IF NOT EXISTS created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+        ALTER TABLE photos ADD COLUMN IF NOT EXISTS moderated_at TIMESTAMP;
+        UPDATE photos SET status = 'approved' WHERE is_approved IS TRUE AND status = 'pending';
+        CREATE INDEX IF NOT EXISTS photos_temple_approved_created_idx ON photos (temple_id, status, created_at DESC);
+        CREATE INDEX IF NOT EXISTS photos_status_created_idx ON photos (status, created_at DESC);
+    `);
     return true;
 };
 

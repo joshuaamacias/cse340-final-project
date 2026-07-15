@@ -7,9 +7,10 @@ import {
     getAllUsers,
     getUserById,
     updateUser,
-    deleteUser
+    deleteUser,
+    updateUserRole
 } from '../../models/forms/registration.js';
-import { requireLogin } from '../../middleware/auth.js';
+import { requireLogin, requireRole } from '../../middleware/auth.js';
 
 const router = Router();
 
@@ -235,10 +236,33 @@ const processDeleteAccount = async (req, res) => {
     res.redirect('/register/list');
 };
 
+const processUpdateRole = async (req, res) => {
+    const targetUserId = Number.parseInt(req.params.id, 10);
+    const { roleName } = req.body;
+
+    if (!Number.isInteger(targetUserId) || !['user', 'admin'].includes(roleName)) {
+        req.flash('error', 'Please choose a valid role.');
+        return res.redirect('/register/list');
+    }
+    if (req.session.user.id === targetUserId) {
+        req.flash('error', 'You cannot change your own role. Ask another admin to do that.');
+        return res.redirect('/register/list');
+    }
+
+    try {
+        const updated = await updateUserRole(targetUserId, roleName);
+        req.flash(updated ? 'success' : 'error', updated ? 'User role updated successfully.' : 'User not found.');
+    } catch (error) {
+        console.error('Error updating user role:', error);
+        req.flash('error', 'Unable to update the user role.');
+    }
+    return res.redirect('/register/list');
+};
+
 // Routes Definitions
 router.get('/', showRegistrationForm);
 router.post('/', registrationValidation, processRegistration);
-router.get('/list', showAllUsers);
+router.get('/list', requireRole('admin'), showAllUsers);
 
 /** * GET /register/:id/edit - Display edit account form */
 router.get('/:id/edit', requireLogin, showEditAccountForm);
@@ -247,6 +271,8 @@ router.get('/:id/edit', requireLogin, showEditAccountForm);
 router.post('/:id/edit', requireLogin, editValidation, processEditAccount);
 
 /** * POST /register/:id/delete - Delete user account */
-router.post('/:id/delete', requireLogin, processDeleteAccount);
+router.post('/:id/delete', requireRole('admin'), processDeleteAccount);
+
+router.post('/:id/role', requireRole('admin'), processUpdateRole);
 
 export default router;

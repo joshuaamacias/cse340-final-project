@@ -87,6 +87,13 @@ const processLogout = (req, res) => {
 const showDashboard = (req, res) => {    
     const user = req.session.user;    
     const sessionData = req.session;    
+    const heroImages = [
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Rome_Italy_Temple.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Accra_Ghana_Temple.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Bangkok_Thailand_Temple.jpg',
+        'https://commons.wikimedia.org/wiki/Special:FilePath/Arequipa_Peru_Temple.jpg'
+    ];
+    const heroImage = heroImages[Math.floor(Math.random() * heroImages.length)];
     
     if (user && user.password) {        
         console.error('Security error: password found in user object');        
@@ -97,10 +104,12 @@ const showDashboard = (req, res) => {
         delete sessionData.user.password;    
     }    
     
+    res.addStyle('<link rel="stylesheet" href="/css/dashboard.css">');
     res.render('dashboard', { 
         title: 'Dashboard', 
         user: user, 
-        sessionData: sessionData 
+        sessionData: sessionData,
+        heroImage
     });
 };
 

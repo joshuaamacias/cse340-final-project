@@ -1,4 +1,5 @@
 import templeModel from '../models/templeModel.js';
+import { getApprovedPhotosByTemple } from '../models/photoModel.js';
 
 const templeController = {};
 
@@ -80,16 +81,20 @@ templeController.showTempleDetail = async (req, res, next) => {
             .replace(/\s+/g, '_');
             
         const imageUrl = `https://commons.wikimedia.org/wiki/Special:FilePath/${wikiName}.jpg`;
+        const photos = await getApprovedPhotosByTemple(templeId, 12);
+        res.addStyle('<link rel="stylesheet" href="/css/gallery.css">');
         
         res.render('detail', { 
             title: temple.name, 
             item: {
+                id: temple.temple_id,
                 title: temple.name,
                 rawStatus: temple.status,
                 date: temple.status.toUpperCase(),
                 snippet: `Status: ${temple.status} | Location: ${temple.location}${temple.closure_reason ? ` (${temple.closure_reason})` : ''}`,
                 image: imageUrl
-            }
+            },
+            photos
         });
     } catch (error) {
         console.error('Error fetching temple detail:', error);

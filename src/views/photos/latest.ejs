@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<section class="photo-page">
+    <p class="eyebrow">COMMUNITY PROGRESS FEED</p>
+    <h1>New Temple Photos</h1>
+    <p class="photo-page-intro">The latest approved construction and progress updates from temples around the world.</p>
+    <% if (photos.length > 0) { %>
+        <div class="photo-grid">
+            <% photos.forEach(photo => { %>
+                <figure class="photo-card">
+                    <a href="/temples/<%= photo.temple_id %>"><img src="<%= photo.file_path %>" alt="Community photo from <%= photo.temple_name %>" loading="lazy"></a>
+                    <figcaption>
+                        <a class="temple-photo-link" href="/temples/<%= photo.temple_id %>"><%= photo.temple_name %></a>
+                        <% if (photo.caption) { %><p><%= photo.caption %></p><% } %>
+                        <small><%= new Date(photo.created_at).toLocaleDateString() %></small>
+                    </figcaption>
+                </figure>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <div class="gallery-empty"><p>No approved photos yet. Check back soon for community updates.</p></div>
+    <% } %>
+</section>
+<%- include('../partials/footer') %>

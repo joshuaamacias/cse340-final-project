@@ -22,7 +22,7 @@ CREATE TABLE users (
 
 -- 4. Create Temples Table (To hold your 385 temples!)
 CREATE TABLE temples (
-    id SERIAL PRIMARY KEY,
+    temple_id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     location VARCHAR(255),
     status VARCHAR(50),
