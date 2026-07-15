@@ -130,19 +130,34 @@ body {
         flex-direction: column;
         height: auto;
         padding-top: 20px;
-        padding-bottom: 20px;
+        padding-bottom: 15px;
     }
+    
     .header-logo-block {
         position: relative;
         left: 0;
-        margin-bottom: 20px;
-        height: auto;
-        padding: 20px;
+        margin-bottom: 25px;
+        height: 120px; /* Compact height for mobile */
+        width: 110px;
+        padding: 10px;
     }
+
+    .header-main-nav {
+        width: 100%;
+        margin-left: 0;
+    }
+
     .header-main-nav ul {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 15px;
+        gap: 10px 15px; /* Adds vertical AND horizontal spacing when wrapping */
+    }
+
+    /* Give mobile links a slightly larger tap target */
+    .header-main-nav a {
+        display: inline-block;
+        padding: 8px 12px; 
+        font-size: 0.8rem; /* Slightly smaller text for narrow screens */
     }
 }
 
