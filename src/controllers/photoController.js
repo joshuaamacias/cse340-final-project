@@ -70,10 +70,12 @@ const submitPhoto = async (req, res, next) => {
             caption
         });
         req.flash('success', 'Thank you! Your photo has been submitted for review.');
-        return res.redirect(`/temples/${templeId}`);
+        return res.redirect('/photos/upload');
     } catch (error) {
         removeUploadedFile(req.file);
-        return next(error);
+        console.error('Photo submission error:', error);
+        req.flash('error', 'We could not submit that photo. Please try again.');
+        return res.redirect(uploadReturnPath(req));
     }
 };
 

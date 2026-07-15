@@ -56,6 +56,21 @@ const setupDatabase = async () => {
         ALTER TABLE photos ADD COLUMN IF NOT EXISTS created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
         ALTER TABLE photos ADD COLUMN IF NOT EXISTS moderated_at TIMESTAMP;
         UPDATE photos SET status = 'approved' WHERE is_approved IS TRUE AND status = 'pending';
+        -- The original class schema used an accounts table. This app's active
+        -- authentication uses users, so photo submissions must reference it.
+        ALTER TABLE photos DROP CONSTRAINT IF EXISTS fk_account;
+        DO $$
+        BEGIN
+            IF NOT EXISTS (
+                SELECT 1 FROM pg_constraint
+                WHERE conname = 'photos_account_id_users_fkey'
+                  AND conrelid = 'photos'::regclass
+            ) THEN
+                ALTER TABLE photos
+                ADD CONSTRAINT photos_account_id_users_fkey
+                FOREIGN KEY (account_id) REFERENCES users(id) ON DELETE CASCADE;
+            END IF;
+        END $$;
         CREATE INDEX IF NOT EXISTS photos_temple_approved_created_idx ON photos (temple_id, status, created_at DESC);
         CREATE INDEX IF NOT EXISTS photos_status_created_idx ON photos (status, created_at DESC);
     `);
