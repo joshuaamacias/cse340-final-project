@@ -12,6 +12,7 @@ import { requireLogin, requireRole } from '../middleware/auth.js';
 import {
     handlePhotoUpload,
     submitPhoto,
+    showUploadForm,
     showLatestPhotos,
     showModerationQueue,
     processModeration
@@ -40,6 +41,7 @@ router.use('/contact', (req, res, next) => {
 router.get('/', templeController.getHome);
 router.get('/directory', templeController.getDirectory);
 router.get('/photos', showLatestPhotos);
+router.get('/photos/upload', requireLogin, showUploadForm);
 
 // --- AUTH & FORMS ROUTES ---
 router.use('/login', loginRoutes);
@@ -48,6 +50,7 @@ router.use('/contact', contactRoutes);
 
 router.get('/logout', processLogout);
 router.get('/dashboard', requireLogin, showDashboard);
+router.post('/photos/upload', requireLogin, handlePhotoUpload, submitPhoto);
 router.post('/temples/:id/photos', requireLogin, handlePhotoUpload, submitPhoto);
 router.get('/admin/photos', requireRole('admin'), showModerationQueue);
 router.post('/admin/photos/:id', requireRole('admin'), processModeration);

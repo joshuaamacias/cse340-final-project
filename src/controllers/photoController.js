@@ -11,6 +11,8 @@ import {
     moderatePhoto
 } from '../models/photoModel.js';
 
+const uploadReturnPath = (req) => req.params.id ? `/temples/${req.params.id}` : '/photos/upload';
+
 const uploadDirectory = path.join(process.cwd(), 'public', 'uploads', 'temple-photos');
 fs.mkdirSync(uploadDirectory, { recursive: true });
 
@@ -32,11 +34,11 @@ const handlePhotoUpload = (req, res, next) => {
             req.flash('error', error instanceof multer.MulterError && error.code === 'LIMIT_FILE_SIZE'
                 ? 'Photos must be 5 MB or smaller.'
                 : 'Please upload one JPEG, PNG, or WebP image.');
-            return res.redirect(`/temples/${req.params.id}`);
+            return res.redirect(uploadReturnPath(req));
         }
         if (!req.file) {
             req.flash('error', 'Please choose a JPEG, PNG, or WebP image to upload.');
-            return res.redirect(`/temples/${req.params.id}`);
+            return res.redirect(uploadReturnPath(req));
         }
         return next();
     });
@@ -47,8 +49,13 @@ const removeUploadedFile = (file) => {
 };
 
 const submitPhoto = async (req, res, next) => {
-    const templeId = Number.parseInt(req.params.id, 10);
+    const templeId = Number.parseInt(req.body.templeId || req.params.id, 10);
     const caption = (req.body.caption || '').trim().slice(0, 280);
+    if (!Number.isInteger(templeId) || caption.length < 4 || req.body.release !== 'accepted') {
+        removeUploadedFile(req.file);
+        req.flash('error', 'Choose a temple, write a short description, and accept the photo release.');
+        return res.redirect(uploadReturnPath(req));
+    }
     try {
         const temple = await templeModel.getTempleById(templeId);
         if (!temple) {
@@ -67,6 +74,16 @@ const submitPhoto = async (req, res, next) => {
     } catch (error) {
         removeUploadedFile(req.file);
         return next(error);
+    }
+};
+
+const showUploadForm = async (req, res, next) => {
+    try {
+        const temples = await templeModel.getAllTemples();
+        res.addStyle('<link rel="stylesheet" href="/css/gallery.css">');
+        res.render('photos/upload', { title: 'Share a Temple Photo', temples });
+    } catch (error) {
+        next(error);
     }
 };
 
@@ -106,4 +123,4 @@ const processModeration = async (req, res, next) => {
     }
 };
 
-export { getApprovedPhotosByTemple, handlePhotoUpload, submitPhoto, showLatestPhotos, showModerationQueue, processModeration };
+export { getApprovedPhotosByTemple, handlePhotoUpload, submitPhoto, showUploadForm, showLatestPhotos, showModerationQueue, processModeration };

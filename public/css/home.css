@@ -1,0 +1,12 @@
+.home-hero { background-color: #17345c; background-position: center; background-size: cover; color: #fff; margin: -2.5rem -1.5rem 3.5rem; min-height: 440px; padding: 5rem max(1.5rem, calc((100vw - 1100px) / 2)); display: flex; align-items: center; }
+.home-hero > div { max-width: 620px; }
+.home-hero .eyebrow { color: #d5bd7f; }
+.home-hero h1 { color: #fff; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(2.6rem, 5vw, 4.7rem); line-height: 1.1; margin: 0 0 1rem; }
+.home-hero p:not(.eyebrow) { color: #f2f5f8; font-size: 1.15rem; margin-bottom: 1.8rem; }
+.home-hero a { background: #d5bd7f; border-radius: 4px; color: #17345c; display: inline-block; font-weight: 700; padding: .75rem 1.15rem; text-decoration: none; }
+.home-news { padding-bottom: 2rem; }
+.home-news > h2 { font-family: Georgia, 'Times New Roman', serif; font-size: 2.3rem; }
+.home-news > p:not(.eyebrow) { margin-bottom: 1.8rem; }
+.news-card > a { color: #17345c; display: inline-block; font-weight: 700; margin-top: auto; text-decoration: none; }
+.news-card > a:hover { color: #a67821; }
+@media (max-width: 600px) { .home-hero { margin-top: -2.5rem; min-height: 400px; padding-left: 1.5rem; padding-right: 1.5rem; } }

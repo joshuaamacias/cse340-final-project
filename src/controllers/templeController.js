@@ -36,12 +36,36 @@ const formatTempleData = (templesData) => {
 // 1. Home Page Controller (Shows only 3 temples)
 templeController.getHome = async (req, res, next) => {
     try {
-        const templesData = await templeModel.getHomeTemples();
-        const formattedNews = formatTempleData(templesData);
-
+        const news = [
+            {
+                title: 'San Diego California Temple Opens for Public Tours',
+                date: 'June 15, 2026',
+                summary: 'The renovated San Diego California Temple is open to the public for tours through July 11, with dedication scheduled for August 23.',
+                url: 'https://newsroom.churchofjesuschrist.org/article/open-house-begins-for-the-san-diego-temple'
+            },
+            {
+                title: 'Belo Horizonte Brazil Temple Open House',
+                date: 'June 10, 2026',
+                summary: 'The public open house ran June 13–27 ahead of the Belo Horizonte Brazil Temple dedication on August 16.',
+                url: 'https://newsroom.churchofjesuschrist.org/article/open-house-begins-for-the-belo-horizonte-brazil-temple'
+            },
+            {
+                title: 'Montpelier Idaho Temple Milestones Announced',
+                date: 'May 4, 2026',
+                summary: 'Open-house and dedication dates have been announced for the Montpelier Idaho Temple, with dedication set for October 18.',
+                url: 'https://newsroom.churchofjesuschrist.org/article/milestones-announced-for-the-montpelier-idaho-temple'
+            },
+            {
+                title: 'Salt Lake Temple Renovation Update',
+                date: 'Updated July 6, 2026',
+                summary: 'The Salt Lake Temple renovation is projected to finish in late 2026, with a public open house planned for 2027.',
+                url: 'https://newsroom.churchofjesuschrist.org/event/temple-open-house-and-dedications'
+            }
+        ];
+        res.addStyle('<link rel="stylesheet" href="/css/home.css">');
         res.render('home', { 
             title: 'LDS Temple News - Home', 
-            news: formattedNews 
+            news
         });
     } catch (error) {
         next(error);

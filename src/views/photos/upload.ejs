@@ -1,0 +1,24 @@
+<%- include('../partials/header') %>
+<section class="photo-page upload-page">
+    <p class="eyebrow">COMMUNITY PROGRESS FEED</p>
+    <h1>Share a Temple Photo</h1>
+    <p class="photo-page-intro">Help document temple progress. Every submission is reviewed before it appears publicly.</p>
+    <form class="photo-upload-form" action="/photos/upload" method="POST" enctype="multipart/form-data">
+        <label for="templeId">Temple <span aria-hidden="true">*</span></label>
+        <select id="templeId" name="templeId" required>
+            <option value="">Choose the temple in your photo</option>
+            <% temples.forEach(temple => { %><option value="<%= temple.temple_id %>"><%= temple.name %> — <%= temple.location %></option><% }) %>
+        </select>
+        <label for="photo">Photo <span aria-hidden="true">*</span></label>
+        <input id="photo" name="photo" type="file" accept="image/jpeg,image/png,image/webp" required>
+        <p class="field-note">JPEG, PNG, or WebP, up to 5 MB.</p>
+        <label for="caption">Description <span aria-hidden="true">*</span></label>
+        <textarea id="caption" name="caption" maxlength="280" minlength="4" rows="4" required placeholder="Describe the construction progress, date, or view in this photo."></textarea>
+        <label class="release-check" for="release">
+            <input id="release" name="release" type="checkbox" value="accepted" required>
+            <span>I confirm that I took this photo or have permission to share it. I authorize Temple Progress Tracker to display, store, and use it on this website and related site communications. I understand the submission may be removed or declined.</span>
+        </label>
+        <button type="submit">Submit photo for review</button>
+    </form>
+</section>
+<%- include('../partials/footer') %>

@@ -16,9 +16,12 @@
 .photo-upload-form h3 { color: #17345c; font-size: 1.35rem; margin: 0; }
 .photo-upload-form p { color: #64748b; margin: .2rem 0 1rem; }
 .photo-upload-form label { display: block; font-weight: 700; margin-top: 1rem; }
-.photo-upload-form input, .photo-upload-form textarea { border: 1px solid #b8c4d0; border-radius: 4px; display: block; font: inherit; margin-top: .3rem; max-width: 620px; padding: .55rem; width: 100%; }
+.photo-upload-form input, .photo-upload-form textarea, .photo-upload-form select { border: 1px solid #b8c4d0; border-radius: 4px; display: block; font: inherit; margin-top: .3rem; max-width: 620px; padding: .55rem; width: 100%; }
 .photo-upload-form input[type=file] { background: #f7fafc; }
 .photo-upload-form button { cursor: pointer; font: inherit; margin-top: 1rem; }
+.field-note { color: #64748b; font-size: .85rem; margin: .3rem 0 0; }
+.photo-upload-form .release-check { align-items: flex-start; display: flex; font-size: .9rem; font-weight: 400; gap: .65rem; line-height: 1.5; max-width: 680px; }
+.photo-upload-form .release-check input { accent-color: #17345c; margin: .25rem 0 0; padding: 0; width: auto; }
 .optional { color: #64748b; font-weight: 400; }
 .gallery-sign-in { margin-top: 1.5rem; }
 .photo-page { margin: 0 auto; max-width: 1100px; padding: 2.5rem 1.5rem; }
