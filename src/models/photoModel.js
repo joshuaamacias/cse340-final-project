@@ -51,14 +51,18 @@ const getPendingPhotos = async () => {
     return result.rows;
 };
 
-const moderatePhoto = async (id, status) => {
-    const result = await db.query(
-        `UPDATE photos
-         SET status = $1, is_approved = ($1 = 'approved'), moderated_at = CURRENT_TIMESTAMP
-         WHERE photo_id = $2 AND status = 'pending'`,
-        [status, id]
-    );
-    return result.rowCount > 0;
+const moderatePhoto = async (photoId, status) => {
+    // We changed 'WHERE id = $2' to 'WHERE photo_id = $2'
+    const sql = `
+        UPDATE photos 
+        SET status = $1 
+        WHERE photo_id = $2 
+        RETURNING *;
+    `;
+    
+    const result = await db.query(sql, [status, photoId]); 
+    
+    return result.rowCount > 0; 
 };
 
 export { getApprovedPhotosByTemple, createPhoto, getLatestApprovedPhotos, getPendingPhotos, moderatePhoto };
