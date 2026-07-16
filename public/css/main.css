@@ -1,4 +1,54 @@
 /* ==========================================
+   0. Banner
+   ========================================== */
+
+
+
+/* Top Header Banner */
+.proposed-banner {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    background: #1e1710 url('https://www.churchofjesuschrist.org/imgs/0f1b6d1d7dee7237a98b7bf9feec68bbef7b3804/full/800,/0/default') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #f7f5f0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.proposed-banner::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30, 23, 16, 0.7); 
+    z-index: 1;
+}
+.proposed-banner-text {
+    position: relative;
+    z-index: 2;
+}
+.proposed-banner h1 {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    margin: 0 0 5px 0;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+.proposed-banner p {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    margin: 0;
+    color: #c9bdae;
+    text-transform: uppercase;
+}
+
+
+
+/* ==========================================
    1. GLOBAL STYLES & VARIABLES
    ========================================== */
 :root {
